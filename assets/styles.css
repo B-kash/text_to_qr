@@ -4,7 +4,11 @@
   --fg: #e5e7eb;
   --card: #111827;
   --muted: #9ca3af;
+  --pane-height: 260px;
 }
+
+/* Ensure padding/border don't break alignment with the card */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -30,11 +34,11 @@ body {
 
 textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: var(--pane-height);
   resize: vertical;
   font: inherit;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 16px;
   border: 1px solid var(--muted, #ccc)
 }
 
@@ -161,9 +165,10 @@ label {
 }
 
 .qrbox {
+  width: 100%;
   display: grid;
   place-items: center;
-  min-height: 260px;
+  min-height: var(--pane-height);
   border: 1px dashed #cbd5e1;
   border-radius: 16px;
   padding: 16px;

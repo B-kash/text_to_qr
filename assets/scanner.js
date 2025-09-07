@@ -35,6 +35,7 @@
   async function startScan(){
     try{
       scan.result.value = 'Requesting camera...';
+      scan.copyBtn.disabled = true;
       const constraints = { video: { facingMode: 'environment' } };
       scan.stream = await navigator.mediaDevices.getUserMedia(constraints);
       scan.video.srcObject = scan.stream;
@@ -65,8 +66,10 @@
 
   function showResult(text){
     scan.result.value = text;
-    scan.actions.style.display = 'flex';
-    setOpenLink(text);
+    const hasText = !!(text && text.trim().length);
+    scan.actions.style.display = hasText ? 'flex' : 'none';
+    scan.copyBtn.disabled = !hasText;
+    setOpenLink(hasText ? text : '');
   }
 
   function tick(){
@@ -115,8 +118,10 @@
       }
     });
     scan.imgInput.addEventListener('change', (e)=>{ const file = e.target.files && e.target.files[0]; if(file) decodeFromImage(file); });
+    // Initial disabled state
+    scan.copyBtn.disabled = true;
+    setOpenLink('');
   }
 
   global.Scanner = { initScanner };
 })(window);
-
