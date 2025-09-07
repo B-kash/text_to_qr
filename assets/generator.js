@@ -7,7 +7,6 @@
     gen: $id('gen'),
     dl: $id('download'),
     copyPng: $id('copyPng'),
-    copySvg: $id('copySvg'),
     share: $id('shareBtn'),
     clear: $id('clear'),
     box: $id('qr'),
@@ -34,7 +33,6 @@
     const hasCurrent = !!(currentQR && lastGeneratedText === text);
     el.dl.disabled = !hasCurrent;
     el.copyPng.disabled = !hasCurrent;
-    el.copySvg.disabled = !hasCurrent;
     el.share.disabled = !hasCurrent || !(navigator.share || (navigator.canShare && navigator.canShare()));
   }
 
@@ -110,28 +108,9 @@
     }catch{}
   }
 
-  async function getSvgBlob(){
-    // Wrap PNG data in an SVG container so we can offer an SVG clipboard item
-    const blob = await getPngBlob();
-    if(!blob) return null;
-    const dataUrl = await new Promise((res)=>{
-      const r = new FileReader();
-      r.onload = () => res(r.result);
-      r.readAsDataURL(blob);
-    });
-    const size = parseInt(el.size.value, 10) || 256;
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">\n  <image href="${dataUrl}" x="0" y="0" width="${size}" height="${size}"/>\n</svg>`;
-    return new Blob([svg], { type: 'image/svg+xml' });
-  }
+  // SVG generation removed
 
-  async function copySVG(){
-    try{
-      const blob = await getSvgBlob();
-      if(!blob) return;
-      const item = new ClipboardItem({ 'image/svg+xml': blob });
-      await navigator.clipboard.write([item]);
-    }catch{}
-  }
+  // Removed SVG copy support
 
   async function shareImage(){
     if(!navigator.share) return;
@@ -217,7 +196,6 @@
     el.gen.addEventListener('click', generate);
     el.dl.addEventListener('click', downloadPNG);
     el.copyPng.addEventListener('click', copyPNG);
-    el.copySvg.addEventListener('click', copySVG);
     el.share.addEventListener('click', shareImage);
     el.clear.addEventListener('click', clearAll);
     el.size.addEventListener('input', () => { el.sizeVal.textContent = el.size.value; });
