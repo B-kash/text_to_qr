@@ -28,11 +28,11 @@ Open `index.html` directly in your browser. No build step is required.
 ## File Structure
 
 - `index.html`: App markup and CDN includes for `qrcodejs` and `jsQR`.
-- `styles.css`: All app styles (light/dark, buttons, ripple, tooltip).
-- `ui.js`: UI helpers (button ripple, copy tooltip) exposed as `window.UI`.
-- `generator.js`: Note → QR logic exposed as `window.Generator`.
-- `scanner.js`: Camera/image QR decoding exposed as `window.Scanner`.
-- `main.js`: Boots the app by calling `UI.attachButtonRipples()`, `Generator.initGenerator()`, and `Scanner.initScanner()`.
+- `assets/styles.css`: All app styles (light/dark, buttons, ripple, tooltip).
+- `assets/ui.js`: UI helpers (button ripple, copy tooltip) exposed as `window.UI`.
+- `assets/generator.js`: Note → QR logic exposed as `window.Generator`.
+- `assets/scanner.js`: Camera/image QR decoding exposed as `window.Scanner`.
+- `assets/main.js`: Boots the app by calling `UI.attachButtonRipples()`, `Generator.initGenerator()`, and `Scanner.initScanner()`.
 
 ## Libraries
 
@@ -52,9 +52,6 @@ These are included via `<script>` tags in `index.html` and used as globals.
 
 ## Troubleshooting
 
-- “Access to script from origin 'null' has been blocked by CORS” when opening via `file://`:
-  - Use the provided classic scripts (default) — they work off disk.
-  - Or run a local server if switching back to ES modules.
 - Camera permission denied:
   - Ensure the page is served over `http://` or `https://` and grant camera permissions, or use “Decode from image”.
 
@@ -62,4 +59,3 @@ These are included via `<script>` tags in `index.html` and used as globals.
 
 - Modern browsers recommended. Dark mode adapts via `prefers-color-scheme`.
 - No build tooling required; just static files.
-

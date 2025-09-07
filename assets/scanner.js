@@ -119,3 +119,4 @@
 
   global.Scanner = { initScanner };
 })(window);
+

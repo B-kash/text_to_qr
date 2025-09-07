@@ -39,3 +39,4 @@
 
   global.UI = { attachButtonRipples, showTooltipOn };
 })(window);
+

@@ -3,3 +3,4 @@
   window.Generator.initGenerator();
   window.Scanner.initScanner();
 })();
+

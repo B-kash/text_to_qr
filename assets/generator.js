@@ -91,3 +91,4 @@
 
   global.Generator = { initGenerator };
 })(window);
+
