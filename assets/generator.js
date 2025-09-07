@@ -27,13 +27,17 @@
     H: QRCode.CorrectLevel.H
   }[v] || QRCode.CorrectLevel.M);
 
+  function canWriteImageToClipboard(){
+    return !!(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write && isSecureContext);
+  }
+
   function updateControls(){
     const text = (el.note.value || '').trim();
     el.clear.disabled = text.length === 0;
     const hasCurrent = !!(currentQR && lastGeneratedText === text);
     el.dl.disabled = !hasCurrent;
-    el.copyPng.disabled = !hasCurrent;
-    el.share.disabled = !hasCurrent || !(navigator.share || (navigator.canShare && navigator.canShare()));
+    el.copyPng.disabled = !hasCurrent || !canWriteImageToClipboard();
+    el.share.disabled = !hasCurrent || !navigator.share;
   }
 
   function generate(){

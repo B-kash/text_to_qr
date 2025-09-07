@@ -4,20 +4,24 @@ A tiny, offline-friendly Text to QR generator and scanner. No tracking, no backe
 
 ## Features
 
+- Mode switch: Text → QR and QR → Text
 - Generate QR from any text or URL
-- Choose size and error correction (ECC)
-- Download PNG of the generated QR
+- Error correction control (Low/Medium/High/Very High)
+- Download PNG and Copy PNG to clipboard
+- Share QR image via the Web Share API (on supported devices)
 - Scan via camera or decode from an image
+- Templates: Wi‑Fi, vCard, Calendar (VCAL)
 - Copy decoded text with visual feedback
 - Keyboard shortcut: Cmd/Ctrl + Enter to Generate
+- PWA install + offline caching (service worker)
 - Accessible states for disabled buttons and focus
 
 ## Getting Started
 
 Open `index.html` directly in your browser. No build step is required.
 
-- If you open via file://, everything works because the scripts are classic (non‑module) scripts.
-- If you prefer ES modules, serve the folder over HTTP(S) to avoid browser CORS restrictions for `file://`.
+- For full functionality (Install as app, Share, Copy PNG), serve over HTTP(S) or localhost.
+- Opening via file:// works for generation and scanning, but service worker and some APIs are restricted.
 
 ### Optional: Run a local server
 
@@ -41,6 +45,18 @@ Open `index.html` directly in your browser. No build step is required.
 
 These are included via `<script>` tags in `index.html` and used as globals.
 
+## PWA
+
+- Manifest: `assets/manifest.webmanifest`
+- Service worker: `assets/sw.js` (caches core assets for offline use)
+- Install from your browser menu when served over HTTP(S)
+
+## Templates
+
+- Wi‑Fi (WIFI:T:S:P:H format)
+- Contact (vCard 3.0)
+- Calendar (VCALENDAR/VEVENT)
+
 ## Accessibility
 
 - Buttons show focus outlines (`:focus-visible`) and disable visually + logically when actions aren’t available.
@@ -52,8 +68,12 @@ These are included via `<script>` tags in `index.html` and used as globals.
 
 ## Troubleshooting
 
+- Copy PNG not available / Share disabled:
+  - These require a secure context (HTTPS or `http://localhost`). Use a local server.
+- PWA install not offered / offline not working:
+  - Service workers require HTTP(S). Use `python3 -m http.server` or any static server.
 - Camera permission denied:
-  - Ensure the page is served over `http://` or `https://` and grant camera permissions, or use “Decode from image”.
+  - Serve over `http://` or `https://` and allow camera access, or use “Decode from image”.
 
 ## Notes
 
