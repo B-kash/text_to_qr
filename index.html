@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Note → QR</title>
+  <meta name="description" content="A tiny, offline Note to QR generator and scanner. No tracking, no backend." />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card grid">
+      <header class="grid" style="gap:6px">
+        <h1 style="margin:0">Note → QR</h1>
+        <div class="muted">Type any note or URL, then generate a scannable QR. Works offline. No data leaves your device.</div>
+      </header>
+      <label for="note">Your text</label>
+      <textarea id="note" placeholder="e.g., Wi‑Fi password, meeting link, pickup note..."></textarea>
+      <div class="row">
+        <button class="btn primary" id="gen">Generate QR</button>
+        <button class="btn ghost" id="download" disabled>Download PNG</button>
+        <button class="btn ghost" id="clear" disabled>Clear</button>
+        <span class="muted">Size <input type="range" id="size" min="128" max="512" value="256" step="32"> <span id="sizeVal">256</span>px</span>
+        <label class="muted">ECC
+          <select id="ecc">
+            <option value="L">L</option>
+            <option value="M" selected>M</option>
+            <option value="Q">Q</option>
+            <option value="H">H</option>
+          </select>
+        </label>
+      </div>
+      <div id="qr" class="qrbox"></div>
+      <footer class="muted">Tip: Paste a URL and scan to open on another device. Everything is generated locally.</footer>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card grid" id="scanCard">
+      <header class="grid" style="gap:6px">
+        <h2 style="margin:0">Scan a QR</h2>
+        <div class="muted">Use your camera or upload an image to decode a QR back into text.</div>
+      </header>
+      <div class="row">
+        <button class="btn primary" id="startScan">Start camera</button>
+        <button class="btn ghost" id="stopScan" disabled>Stop</button>
+        <label class="btn ghost" for="imgInput" style="cursor:pointer">Decode from image</label>
+        <input id="imgInput" type="file" accept="image/*" style="display:none" />
+      </div>
+      <div class="qrbox" style="min-height:0;padding:0">
+        <video id="cam" autoplay playsinline muted style="width:100%;max-height:320px;border-radius:16px;display:none"></video>
+        <canvas id="scanCanvas" style="display:none"></canvas>
+      </div>
+      <div class="grid" style="gap:8px">
+        <label class="muted" for="scanResult">Decoded text</label>
+        <textarea id="scanResult" readonly class="muted" style="min-height:64px"></textarea>
+      </div>
+      <div class="row" id="scanActions" style="display:none">
+        <button class="btn ghost" id="copyResult">Copy</button>
+        <a class="btn ghost" id="openResult" href="#" target="_blank" rel="noopener" aria-disabled="true" tabindex="-1">Open as link</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="generator.js"></script>
+  <script src="scanner.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
