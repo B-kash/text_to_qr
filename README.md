@@ -1,6 +1,6 @@
-# Note → QR
+# Text → QR
 
-A tiny, offline-friendly Note to QR generator and scanner. No tracking, no backend. Works by generating QR codes locally and decoding them via your camera or uploaded images.
+A tiny, offline-friendly Text to QR generator and scanner. No tracking, no backend. Works by generating QR codes locally and decoding them via your camera or uploaded images.
 
 ## Features
 
@@ -30,7 +30,7 @@ Open `index.html` directly in your browser. No build step is required.
 - `index.html`: App markup and CDN includes for `qrcodejs` and `jsQR`.
 - `assets/styles.css`: All app styles (light/dark, buttons, ripple, tooltip).
 - `assets/ui.js`: UI helpers (button ripple, copy tooltip) exposed as `window.UI`.
-- `assets/generator.js`: Note → QR logic exposed as `window.Generator`.
+- `assets/generator.js`: Text → QR logic exposed as `window.Generator`.
 - `assets/scanner.js`: Camera/image QR decoding exposed as `window.Scanner`.
 - `assets/main.js`: Boots the app by calling `UI.attachButtonRipples()`, `Generator.initGenerator()`, and `Scanner.initScanner()`.
 

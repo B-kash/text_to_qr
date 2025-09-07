@@ -3,41 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Note → QR</title>
-  <meta name="description" content="A tiny, offline Note to QR generator and scanner. No tracking, no backend." />
+  <title>Text → QR</title>
+  <meta name="description" content="A tiny, offline Text to QR generator and scanner. No tracking, no backend." />
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="manifest" href="assets/manifest.webmanifest">
   <link rel="stylesheet" href="assets/styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 </head>
 <body>
   <div class="wrap">
-    <div class="card grid">
+    <div class="row" style="justify-content:space-between; align-items:center">
+      <div class="muted">Mode
+        <select id="mode">
+          <option value="gen" selected>Text → QR</option>
+          <option value="scan">QR → Text</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" id="genWrap">
+    <div class="card grid" id="genCard">
       <header class="grid" style="gap:6px">
-        <h1 style="margin:0">Note → QR</h1>
-        <div class="muted">Type any note or URL, then generate a scannable QR. Works offline. No data leaves your device.</div>
+        <h1 style="margin:0">Text → QR</h1>
+        <div class="muted">Type any text or URL, then generate a scannable QR. Works offline. No data leaves your device.</div>
       </header>
       <label for="note">Your text</label>
-      <textarea id="note" placeholder="e.g., Wi‑Fi password, meeting link, pickup note..."></textarea>
+      <textarea id="note" placeholder="e.g., Wi‑Fi password, meeting link, pickup text..."></textarea>
       <div class="row">
         <button class="btn primary" id="gen">Generate QR</button>
         <button class="btn ghost" id="download" disabled>Download PNG</button>
+        <button class="btn ghost" id="copyPng" disabled>Copy PNG</button>
+        <button class="btn ghost" id="copySvg" disabled>Copy SVG</button>
+        <button class="btn ghost" id="shareBtn" disabled>Share</button>
         <button class="btn ghost" id="clear" disabled>Clear</button>
         <span class="muted">Size <input type="range" id="size" min="128" max="512" value="256" step="32"> <span id="sizeVal">256</span>px</span>
-        <label class="muted">ECC
+        <label class="muted">Error correction
           <select id="ecc">
-            <option value="L">L</option>
-            <option value="M" selected>M</option>
-            <option value="Q">Q</option>
-            <option value="H">H</option>
+            <option value="L">Low (7%)</option>
+            <option value="M" selected>Medium (15%)</option>
+            <option value="Q">High (25%)</option>
+            <option value="H">Very High (30%)</option>
           </select>
         </label>
+      </div>
+      <div class="row">
+        <label class="muted">Templates
+          <select id="template">
+            <option value="">Select…</option>
+            <option value="wifi">Wi‑Fi</option>
+            <option value="vcard">Contact (vCard)</option>
+            <option value="vcal">Calendar event (VCAL)</option>
+          </select>
+        </label>
+        <button class="btn ghost" id="useTemplate">Insert Template</button>
       </div>
       <div id="qr" class="qrbox"></div>
       <footer class="muted">Tip: Paste a URL and scan to open on another device. Everything is generated locally.</footer>
     </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap" id="scanWrap">
     <div class="card grid" id="scanCard">
       <header class="grid" style="gap:6px">
         <h2 style="margin:0">Scan a QR</h2>
