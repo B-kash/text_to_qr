@@ -11,15 +11,21 @@
   const modeSel = document.getElementById('mode');
   const genWrap = document.getElementById('genWrap');
   const scanWrap = document.getElementById('scanWrap');
+  const seoContentGen = document.getElementById('seoContentGen');
+  const seoContentScan = document.getElementById('seoContentScan');
 
   function setMode(mode){
     const isGen = mode !== 'scan';
     if (isGen) {
       genWrap.classList.remove('hidden');
       scanWrap.classList.add('hidden');
+      if (seoContentGen) seoContentGen.classList.remove('seo-content-hidden');
+      if (seoContentScan) seoContentScan.classList.add('seo-content-hidden');
     } else {
       genWrap.classList.add('hidden');
       scanWrap.classList.remove('hidden');
+      if (seoContentGen) seoContentGen.classList.add('seo-content-hidden');
+      if (seoContentScan) seoContentScan.classList.remove('seo-content-hidden');
     }
     // If leaving scan mode, stop the camera if running
     if (isGen) {

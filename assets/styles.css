@@ -361,6 +361,10 @@ footer a:hover {
   display: none;
 }
 
+.seo-content-hidden {
+  display: none;
+}
+
 /* Footer styles */
 .page-footer {
   margin-top: 20px;
