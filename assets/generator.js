@@ -56,6 +56,10 @@
     currentQR = new QRCode(el.box, { text, width: size, height: size, correctLevel: ec });
     lastGeneratedText = text;
     setTimeout(updateControls, 50);
+    // Scroll to QR code section after generation
+    setTimeout(() => {
+      el.box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
   }
 
   function downloadPNG(){
