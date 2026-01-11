@@ -14,8 +14,13 @@
 
   function setMode(mode){
     const isGen = mode !== 'scan';
-    genWrap.style.display = isGen ? '' : 'none';
-    scanWrap.style.display = isGen ? 'none' : '';
+    if (isGen) {
+      genWrap.classList.remove('hidden');
+      scanWrap.classList.add('hidden');
+    } else {
+      genWrap.classList.add('hidden');
+      scanWrap.classList.remove('hidden');
+    }
     // If leaving scan mode, stop the camera if running
     if (isGen) {
       const stopBtn = document.getElementById('stopScan');

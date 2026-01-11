@@ -244,6 +244,141 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* Navigation styles */
+.nav-row {
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* SEO article section */
+.seo-article {
+  margin-top: 0;
+}
+
+.seo-card {
+  gap: 10px;
+  padding: 16px 20px;
+}
+
+.seo-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.seo-description {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.seo-subtitle {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.seo-list {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* Card header styles */
+.card-header {
+  gap: 6px;
+}
+
+.card-title {
+  margin: 0;
+}
+
+.card-title-alt {
+  margin: 0;
+}
+
+/* Button label */
+.btn-label {
+  cursor: pointer;
+}
+
+/* Hidden inputs */
+.hidden-input {
+  display: none;
+}
+
+/* Scan section styles */
+.scan-qrbox {
+  min-height: 0;
+  padding: 0;
+}
+
+.scan-video {
+  width: 100%;
+  max-height: 320px;
+  border-radius: 16px;
+  display: none;
+}
+
+.scan-canvas {
+  display: none;
+}
+
+.scan-grid {
+  gap: 8px;
+}
+
+.scan-textarea {
+  min-height: 64px;
+}
+
+.scan-actions {
+  display: none;
+}
+
+.scan-actions.show {
+  display: flex;
+}
+
+.scan-video.show {
+  display: block;
+}
+
+.gen-wrap {
+  display: block;
+}
+
+.gen-wrap.hidden {
+  display: none;
+}
+
+.scan-wrap {
+  display: block;
+}
+
+.scan-wrap.hidden {
+  display: none;
+}
+
+/* Footer styles */
+.page-footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.page-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.page-footer p + p {
+  margin: 8px 0 0 0;
+  font-size: 0.85rem;
+}
+
 @media (prefers-color-scheme: dark) {
   footer a {
     color: #60a5fa;

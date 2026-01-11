@@ -87,7 +87,7 @@
 <body>
   <main>
     <nav class="wrap" aria-label="Mode selector">
-      <div class="row" style="justify-content:space-between; align-items:center">
+      <div class="row nav-row">
         <div class="muted">Mode
           <select id="mode" aria-label="Select mode: Generate or Scan QR code">
             <option value="gen" selected>Text → QR</option>
@@ -97,15 +97,15 @@
       </div>
     </nav>
 
-    <article class="wrap" style="margin-top: 0;">
-      <div class="card grid" style="gap: 10px; padding: 16px 20px;">
-        <h2 style="margin: 0; font-size: 1.25rem; font-weight: 700;">Free Text to QR Code Generator</h2>
-        <p class="muted" style="margin: 0; line-height: 1.5; font-size: 0.95rem;">
+    <article class="wrap seo-article">
+      <div class="card grid seo-card">
+        <h2 class="seo-title">Free Text to QR Code Generator</h2>
+        <p class="muted seo-description">
           Generate QR codes from text or URLs instantly. This tool works fully offline, stores nothing, and runs entirely in your browser.
         </p>
         <div>
-          <h3 style="margin: 0 0 6px 0; font-size: 0.95rem; font-weight: 600;">Why use this QR code generator?</h3>
-          <ul class="muted" style="margin: 0; padding-left: 18px; line-height: 1.6; font-size: 0.9rem;">
+          <h3 class="seo-subtitle">Why use this QR code generator?</h3>
+          <ul class="muted seo-list">
             <li>100% free and offline</li>
             <li>No tracking, no backend</li>
             <li>Works on mobile and desktop</li>
@@ -115,10 +115,10 @@
       </div>
     </article>
 
-    <section class="wrap" id="genWrap" aria-labelledby="gen-title">
+    <section class="wrap gen-wrap" id="genWrap" aria-labelledby="gen-title">
       <div class="card grid" id="genCard">
-        <header class="grid" style="gap:6px">
-          <h1 id="gen-title" style="margin:0">Text → QR</h1>
+        <header class="grid card-header">
+          <h1 id="gen-title" class="card-title">Text → QR</h1>
           <p class="muted">Type any text or URL, then generate a scannable QR. Works offline. No data leaves your
             device.</p>
         </header>
@@ -158,28 +158,27 @@
       </div>
     </section>
 
-    <section class="wrap" id="scanWrap" aria-labelledby="scan-title">
+    <section class="wrap scan-wrap" id="scanWrap" aria-labelledby="scan-title">
       <div class="card grid" id="scanCard">
-        <header class="grid" style="gap:6px">
-          <h2 id="scan-title" style="margin:0">Scan a QR</h2>
+        <header class="grid card-header">
+          <h2 id="scan-title" class="card-title-alt">Scan a QR</h2>
           <p class="muted">Use your camera or upload an image to decode a QR back into text.</p>
         </header>
         <div class="row">
           <button class="btn primary" id="startScan">Start camera</button>
           <button class="btn ghost" id="stopScan" disabled>Stop</button>
-          <label class="btn ghost" for="imgInput" style="cursor:pointer">Decode from image</label>
-          <input id="imgInput" type="file" accept="image/*" style="display:none" />
+          <label class="btn ghost btn-label" for="imgInput">Decode from image</label>
+          <input id="imgInput" type="file" accept="image/*" class="hidden-input" />
         </div>
-        <div class="qrbox" style="min-height:0;padding:0">
-          <video id="cam" autoplay playsinline muted
-            style="width:100%;max-height:320px;border-radius:16px;display:none"></video>
-          <canvas id="scanCanvas" style="display:none"></canvas>
+        <div class="qrbox scan-qrbox">
+          <video id="cam" class="scan-video" autoplay playsinline muted></video>
+          <canvas id="scanCanvas" class="scan-canvas"></canvas>
         </div>
-        <div class="grid" style="gap:8px">
+        <div class="grid scan-grid">
           <label class="muted" for="scanResult">Decoded text</label>
-          <textarea id="scanResult" readonly class="muted" style="min-height:64px"></textarea>
+          <textarea id="scanResult" readonly class="muted scan-textarea"></textarea>
         </div>
-        <div class="row" id="scanActions" style="display:none">
+        <div class="row scan-actions" id="scanActions">
           <button class="btn ghost" id="copyResult" disabled>Copy</button>
           <a class="btn ghost" id="openResult" href="#" target="_blank" rel="noopener" aria-disabled="true"
             tabindex="-1">Open as link</a>
@@ -188,12 +187,12 @@
     </section>
   </main>
 
-  <footer class="wrap" style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
-    <p class="muted" style="margin: 0; font-size: 0.9rem; line-height: 1.5;">
+  <footer class="wrap page-footer">
+    <p class="muted">
       Built by <a href="https://tech-abyss.com" target="_blank" rel="noopener">Tech Abyss</a> — 
       Custom web tools & freelance development.
     </p>
-    <p class="muted" style="margin: 8px 0 0 0; font-size: 0.85rem;">
+    <p class="muted">
       <a href="mailto:hello@tech-abyss.com">hello@tech-abyss.com</a>
     </p>
   </footer>

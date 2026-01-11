@@ -39,7 +39,7 @@
       const constraints = { video: { facingMode: 'environment' } };
       scan.stream = await navigator.mediaDevices.getUserMedia(constraints);
       scan.video.srcObject = scan.stream;
-      scan.video.style.display = 'block';
+      scan.video.classList.add('show');
       await scan.video.play();
       scan.startBtn.disabled = true;
       scan.stopBtn.disabled = false;
@@ -59,7 +59,7 @@
     }
     scan.video.pause();
     scan.video.srcObject = null;
-    scan.video.style.display = 'none';
+    scan.video.classList.remove('show');
     scan.startBtn.disabled = false;
     scan.stopBtn.disabled = true;
   }
@@ -67,7 +67,11 @@
   function showResult(text){
     scan.result.value = text;
     const hasText = !!(text && text.trim().length);
-    scan.actions.style.display = hasText ? 'flex' : 'none';
+    if(hasText){
+      scan.actions.classList.add('show');
+    } else {
+      scan.actions.classList.remove('show');
+    }
     scan.copyBtn.disabled = !hasText;
     setOpenLink(hasText ? text : '');
   }
